@@ -84,7 +84,7 @@ export default function Home() {
               Transform Your Fitness Journey
             </h2>
             <p className="text-xl text-blue-800 mb-8">
-              Track, analyze, and improve your health with FitTrack's
+              Track, analyze, and improve your health with FitTrack&apos;s
               comprehensive tools.
             </p>
             <Link href="/login" passHref>

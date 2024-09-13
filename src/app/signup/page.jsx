@@ -308,8 +308,8 @@ export default function SignUp() {
               <DialogHeader>
                 <DialogTitle>Enter OTP</DialogTitle>
                 <DialogDescription>
-                  We've sent a one-time password to your email. Please enter it
-                  below to verify your account.
+                  We&apos;ve sent a one-time password to your email. Please
+                  enter it below to verify your account.
                 </DialogDescription>
               </DialogHeader>
               <form onSubmit={handleOtpSubmit}>
