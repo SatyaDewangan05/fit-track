@@ -40,6 +40,7 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import axios from "axios";
+import { Loader2 } from "lucide-react";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -81,7 +82,7 @@ export default function SignUp() {
   });
 
   // OTP
-  const [showOtpDialog, setShowOtpDialog] = useState(false);
+  const [showOtpDialog, setShowOtpDialog] = useState(true);
   const [otp, setOtp] = useState("");
 
   const handleSubmit = async (e) => {
@@ -128,14 +129,17 @@ export default function SignUp() {
 
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/auth/signupfit", {
-        firstName,
-        lastName,
-        email,
-        password,
-        dateOfBirth,
-        gender,
-      });
+      await axios.post(
+        process.env.NEXT_PUBLIC_SERVER_IP + "/api/auth/signupfit",
+        {
+          firstName,
+          lastName,
+          email,
+          password,
+          dateOfBirth,
+          gender,
+        }
+      );
 
       //   alert(response.data.message);
       setLoading(false);
@@ -143,11 +147,11 @@ export default function SignUp() {
       // localStorage.setItem("token", response.data.token); // Save JWT token
     } catch (error) {
       // console.log("error: ", error);
+      setLoading(false);
       setError(
         "Signup failed: " + (error.response?.data?.message || error.message)
       );
-      if (error.response?.status === 409) navigate("/");
-      setLoading(false);
+      // if (error.response?.status === 409) router.push("/");
     }
 
     // Here you would typically send the form data to your backend
@@ -157,11 +161,25 @@ export default function SignUp() {
     // router.push("/dashboard");
   };
 
-  const handleOtpSubmit = (e) => {
+  const [otpError, setOtpError] = useState("");
+  const handleOtpSubmit = async (e) => {
     e.preventDefault();
-    console.log("OTP: ", otp);
-    setShowOtpDialog(false);
-    // router.push("/dashboard");
+    setLoading(true);
+    try {
+      await axios.post(
+        process.env.NEXT_PUBLIC_SERVER_IP + "/api/auth/verifyfit-otp",
+        {
+          otp: otp,
+          email: formData.email,
+        }
+      );
+      setLoading(false);
+      setShowOtpDialog(false);
+      router.push("/dashboard");
+    } catch (error) {
+      setLoading(false);
+      setOtpError(error.response.data.message);
+    }
   };
 
   return (
@@ -273,13 +291,20 @@ export default function SignUp() {
               </label>
             </div>
             {error && <p className="text-red-500 text-sm">{error}</p>}
-            <Button type="submit" className="w-full" loading={loading}>
-              Sign Up
+            <Button type="submit" className="w-full" disable={loading}>
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </>
+              ) : (
+                "Sign Up"
+              )}
             </Button>
           </form>
 
           <Dialog open={showOtpDialog} onOpenChange={setShowOtpDialog}>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-[425px] bg-black">
               <DialogHeader>
                 <DialogTitle>Enter OTP</DialogTitle>
                 <DialogDescription>
@@ -307,8 +332,23 @@ export default function SignUp() {
                     </InputOTPGroup>
                   </InputOTP>
                 </div>
+
+                {otpError && <p className="text-red-500 text-sm">{otpError}</p>}
                 <DialogFooter>
-                  <Button type="submit">Verify OTP</Button>
+                  <Button
+                    type="submit"
+                    loading={loading}
+                    className="bg-white hover:bg-[#bbb] text-black"
+                  >
+                    {loading ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Please wait
+                      </>
+                    ) : (
+                      "Verify OTP"
+                    )}
+                  </Button>
                 </DialogFooter>
               </form>
             </DialogContent>

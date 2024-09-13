@@ -1,37 +1,126 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FitTrack
 
-## Getting Started
+FitTrack is a comprehensive health and fitness tracking web application built with Next.js for the frontend and Express.js for the backend. It allows users to monitor their weight, activity levels, and nutritional intake, providing insightful visualizations and progress tracking.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- User authentication (signup, login, OTP verification)
+- Dashboard with real-time health and fitness data visualization
+- Weight progress tracking
+- Activity monitoring (steps, calories burned)
+- Nutritional breakdown
+- Responsive design for mobile and desktop
+
+## Tech Stack
+
+- Frontend: Next.js, React, TypeScript
+- Backend: Express.js, Node.js
+- Styling: Tailwind CSS
+- UI Components: shadcn/ui
+- Charts: Recharts
+- Authentication: JWT (to be implemented)
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- Node.js (v14 or later)
+- npm (v6 or later)
+
+## Installation
+
+1. Clone the repository:
+
+   ```
+   git clone https://github.com/yourusername/fittrack.git
+   cd fittrack
+   ```
+
+2. Install dependencies for both frontend and backend:
+
+   ```
+   # Install frontend dependencies
+   cd frontend
+   npm install
+
+   # Install backend dependencies
+   cd ../backend
+   npm install
+   ```
+
+## Configuration
+
+1. Create a `.env.local` file in the `frontend` directory:
+
+   ```
+   NEXT_PUBLIC_API_URL=http://localhost:5000/api
+   ```
+
+2. Create a `.env` file in the `backend` directory:
+   ```
+   PORT=5000
+   JWT_SECRET=your_jwt_secret_here
+   ```
+
+## Running the Application
+
+1. Start the backend server:
+
+   ```
+   cd backend
+   npm run dev
+   ```
+
+2. In a new terminal, start the frontend development server:
+
+   ```
+   cd frontend
+   npm run dev
+   ```
+
+3. Open your browser and navigate to `http://localhost:3000`
+
+## Project Structure
+
+```
+fittrack/
+├── frontend/
+│   ├── pages/
+│   │   ├── index.tsx
+│   │   ├── signup.tsx
+│   │   ├── login.tsx
+│   │   └── dashboard.tsx
+│   ├── components/
+│   │   └── ui/
+│   ├── styles/
+│   └── public/
+├── backend/
+│   ├── server.js
+│   ├── routes/
+│   ├── controllers/
+│   ├── models/
+│   └── middleware/
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contributing
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
+This project is licensed under the MIT License.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Acknowledgements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# fit-track
+- [Next.js](https://nextjs.org/)
+- [Express.js](https://expressjs.com/)
+- [Recharts](https://recharts.org/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Tailwind CSS](https://tailwindcss.com/)

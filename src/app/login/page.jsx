@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, Loader2 } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import Link from "next/link";
 
@@ -16,18 +16,26 @@ export default function Login() {
   const router = useRouter();
 
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Here you would typically send a request to your backend to authenticate the user
     console.log("Login attempt with:", email, password);
+    setLoading(true);
     axios
-      .post("http://localhost:5000/api/auth/signin", {
+      .post(process.env.NEXT_PUBLIC_SERVER_IP + "/api/auth/signinfit", {
         email: email,
         password: password,
       })
-      .then(() => router.push("/dashboard"))
-      .catch((error) => setError(error.response.data.message));
+      .then(() => {
+        setLoading(false);
+        router.push("/dashboard");
+      })
+      .catch((error) => {
+        setLoading(false);
+        setError(error.response.data.message);
+      });
   };
 
   return (
@@ -84,7 +92,14 @@ export default function Login() {
             </Alert>
           ) : null}
           <Button type="submit" className="w-full">
-            Login
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Please wait
+              </>
+            ) : (
+              "Login"
+            )}
           </Button>
         </form>
 
