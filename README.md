@@ -26,7 +26,7 @@ Before you begin, ensure you have the following installed:
 
 - Node.js (v14 or later)
 - npm (v6 or later)
-- Express Backend (https://github.com/SatyaDewangan05/auth_server_ts.git))
+- Express Backend (https://github.com/SatyaDewangan05/auth_server_ts.git)
 
 ## Installation
 
