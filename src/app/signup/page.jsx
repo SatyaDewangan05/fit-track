@@ -82,7 +82,7 @@ export default function SignUp() {
   });
 
   // OTP
-  const [showOtpDialog, setShowOtpDialog] = useState(true);
+  const [showOtpDialog, setShowOtpDialog] = useState(false);
   const [otp, setOtp] = useState("");
 
   const handleSubmit = async (e) => {

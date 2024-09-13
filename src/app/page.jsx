@@ -69,9 +69,14 @@ export default function Home() {
       <div className="container mx-auto px-4 pt-8">
         <header className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold text-blue-800">FitTrack</h1>
-          <nav>
+          <nav className="flex gap-2">
+            <Link href="/signup" passHref>
+              <Button variant="filled" className="bg-black hover:bg-opacity-70">
+                Sign Up
+              </Button>
+            </Link>
             <Link href="/login" passHref>
-              <Button variant="outline" className="bg-black">
+              <Button variant="filled" className="bg-black hover:bg-opacity-70">
                 Login
               </Button>
             </Link>
