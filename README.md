@@ -26,6 +26,7 @@ Before you begin, ensure you have the following installed:
 
 - Node.js (v14 or later)
 - npm (v6 or later)
+- Express Backend (https://github.com/SatyaDewangan05/auth_server_ts.git))
 
 ## Installation
 
@@ -39,67 +40,49 @@ Before you begin, ensure you have the following installed:
 2. Install dependencies for both frontend and backend:
 
    ```
-   # Install frontend dependencies
-   cd frontend
-   npm install
-
-   # Install backend dependencies
-   cd ../backend
+   # Install dependencies
    npm install
    ```
 
 ## Configuration
 
-1. Create a `.env.local` file in the `frontend` directory:
+   Create a `.env` file in the root directory:
 
    ```
-   NEXT_PUBLIC_API_URL=http://localhost:5000/api
-   ```
-
-2. Create a `.env` file in the `backend` directory:
-   ```
-   PORT=5000
-   JWT_SECRET=your_jwt_secret_here
+   NEXT_PUBLIC_SERVER_IP=http://localhost:5000
    ```
 
 ## Running the Application
 
-1. Start the backend server:
+1. Start the Web server:
 
    ```
-   cd backend
    npm run dev
    ```
 
-2. In a new terminal, start the frontend development server:
-
-   ```
-   cd frontend
-   npm run dev
-   ```
-
-3. Open your browser and navigate to `http://localhost:3000`
+2. Open your browser and navigate to `http://localhost:3000`
 
 ## Project Structure
 
 ```
 fittrack/
-├── frontend/
-│   ├── pages/
+├── src/
+│   ├── app/
 │   │   ├── index.tsx
 │   │   ├── signup.tsx
 │   │   ├── login.tsx
 │   │   └── dashboard.tsx
 │   ├── components/
 │   │   └── ui/
-│   ├── styles/
 │   └── public/
-├── backend/
-│   ├── server.js
-│   ├── routes/
-│   ├── controllers/
-│   ├── models/
-│   └── middleware/
+
+Express Backend
+backend/
+├── index.js
+├── routes/
+├── controllers/
+├── models/
+└── middleware/
 └── README.md
 ```
 
